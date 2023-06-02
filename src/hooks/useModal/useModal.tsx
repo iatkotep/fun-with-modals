@@ -31,11 +31,12 @@ export const useModal: TUseModal = (isOpenInit = false) => {
 
       useEffect(() => {
         if (!refModalWrap.current) return noop;
-        const modalNode = refModalWrap.current;
+
         const delegateCloseEvent = (e: MouseEvent) => {
           console.log(e);
         };
 
+        const modalNode = refModalWrap.current;
         modalNode.addEventListener("click", delegateCloseEvent);
         return () => {
           modalNode.removeEventListener("click", delegateCloseEvent);
