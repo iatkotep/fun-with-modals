@@ -1,8 +1,9 @@
+import React, { useRef } from "react";
 import ReactDOM from "react-dom";
-import React, { useCallback, useEffect, useRef } from "react";
-import { Box, Button, Text } from "@chakra-ui/react";
-import { noop } from "../../global/helpers";
-import { createWrapProps, modalProps } from "./props";
+import { useClosingLogic, useModalState } from "./hooks";
+import { Box, Button, Link, Text } from "@chakra-ui/react";
+import { ModalClassName } from "./helpers";
+import { createWrapProps, dialogProps } from "./props";
 
 interface IModal {
   title: string;
@@ -12,51 +13,52 @@ interface IModal {
 
 type TUseModal = (isOpenInit?: boolean) => {
   Modal: React.FC<IModal>;
-  open: () => void;
+  openModal: () => void;
 };
 
 export const useModal: TUseModal = (isOpenInit = false) => {
-  const [isOpen, setIsOpen] = React.useState(isOpenInit);
-
-  const openModal = useCallback(() => {
-    setIsOpen(true);
-  }, []);
-  const closeModal = useCallback(() => {
-    setIsOpen(false);
-  }, []);
-
+  const { isModalOpen, openModal, closeModal } = useModalState(isOpenInit);
   return {
     Modal: ({ title, body, isBlocking = false }) => {
       const refModalWrap = useRef<HTMLElement>(null);
+      useClosingLogic(refModalWrap, closeModal, isBlocking);
+      if (!isModalOpen) return null;
 
-      useEffect(() => {
-        if (!refModalWrap.current) return noop;
-
-        const delegateCloseEvent = (e: MouseEvent) => {
-          console.log(e);
-        };
-
-        const modalNode = refModalWrap.current;
-        modalNode.addEventListener("click", delegateCloseEvent);
-        return () => {
-          modalNode.removeEventListener("click", delegateCloseEvent);
-        };
-      }, [isBlocking, closeModal]);
-
-      if (!isOpen) return null;
+      const isVisible = !isBlocking;
 
       return ReactDOM.createPortal(
-        <Box {...createWrapProps(refModalWrap)}>
-          <Box {...modalProps}>
+        <Box
+          {...createWrapProps(isModalOpen, refModalWrap)}
+          className={ModalClassName.OVERLAY}
+        >
+          <Box {...dialogProps}>
             <Text>{title}</Text>
             <Text>{body}</Text>
-            <Button className={"close"}>Close</Button>
+            {isVisible && (
+              <Button className={ModalClassName.CLOSE}>Close</Button>
+            )}
+            <Box>
+              {isVisible && (
+                <Button className={ModalClassName.CANCEL}>Cancel</Button>
+              )}
+              <Button
+                className={ModalClassName.CONFIRM}
+                onClick={() => {
+                  console.log("Call To Arms!!!!!");
+                }}
+              >
+                Call To Action
+              </Button>
+              <Link href={"#"} className={ModalClassName.CONFIRM}>
+                This is a link
+              </Link>
+            </Box>
           </Box>
         </Box>,
         document.body
       );
     },
-    open: openModal,
+    openModal,
   };
 };
 export default useModal;

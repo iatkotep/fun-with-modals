@@ -1,10 +1,19 @@
 import React from "react";
+import { ModalClassName } from "./helpers";
 
-export const createWrapProps = (ref: React.RefObject<HTMLElement>) => ({
+export const createWrapProps = (
+  isOpen: boolean,
+  ref: React.RefObject<HTMLElement>
+) => ({
+  // transition: "opacity 1s",
+  // pointerEvents: isOpen ? ("auto" as "auto") : ("none" as "none"),
+  // opacity: isOpen ? 1 : 0,
+
   alignItems: "center",
   as: "article" as "article",
-  backgroundColor: "rgba(0,0,0,0.5)",
+  backgroundColor: "rgba(0,0,0,0.75)",
   bottom: 0,
+  className: ModalClassName.OVERLAY,
   display: "flex",
   justifyContent: "center",
   left: 0,
@@ -14,7 +23,7 @@ export const createWrapProps = (ref: React.RefObject<HTMLElement>) => ({
   top: 0,
   zIndex: 999999,
 });
-export const modalProps = {
+export const dialogProps = {
   backgroundColor: "white",
   maxWidth: "600px",
   width: "100%",

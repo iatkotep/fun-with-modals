@@ -1,27 +1,24 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { useModal } from "./hooks/useModal";
+import { Button } from "@chakra-ui/react";
 
 function App() {
-  const { Modal } = useModal(true);
+  const { Modal, openModal } = useModal();
+  const { Modal: Modal2, openModal: openModal2 } = useModal();
   return (
     <div className="App">
-      <Modal title="Modal Title" body="Modal Body" />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Button onClick={() => openModal()}>Open Dismissible Modal!</Button>
+      <Modal
+        title="Dismissible Modal"
+        body="I am a dismissible modal.  You can get rid of me in a bunch of ways."
+      />
+      <Button onClick={() => openModal2()}>Open Modal!</Button>
+      <Modal2
+        title="Blocking Modal"
+        body="I am a blocking modal.  I have no close or cancel button, and you can not dismiss me by clicking the Overlay"
+        isBlocking={true}
+      />
     </div>
   );
 }
