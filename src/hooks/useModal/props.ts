@@ -1,5 +1,6 @@
 import React from "react";
 import { ModalClassName } from "./helpers";
+import { SystemBreakpoints } from "../../theme/theme";
 
 export const createWrapProps = (
   isOpen: boolean,
@@ -23,8 +24,18 @@ export const createWrapProps = (
   top: 0,
   zIndex: 999999,
 });
+
 export const dialogProps = {
   backgroundColor: "white",
-  maxWidth: "600px",
+  maxWidth: `${SystemBreakpoints.md}px`,
   width: "100%",
+  height: {
+    base: "100%",
+    md: "auto",
+  },
+  maxH: {
+    base: "100%",
+    md: "72%",
+    xl: "84%",
+  },
 };

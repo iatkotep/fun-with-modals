@@ -4,3 +4,12 @@ export enum ModalClassName {
   OVERLAY = "modal-overlay",
   CONFIRM = "modal-confirm",
 }
+
+export const closingWhitelistNonBlocking = [
+  ModalClassName.CONFIRM,
+  ModalClassName.CLOSE,
+  ModalClassName.CANCEL,
+  ModalClassName.OVERLAY,
+];
+export const closingWhiteListBlocking = [ModalClassName.CONFIRM];
+export const confirmationWhiteList = [ModalClassName.CONFIRM];

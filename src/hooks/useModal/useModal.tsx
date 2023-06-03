@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 import ReactDOM from "react-dom";
-import { useClosingLogic, useModalState } from "./hooks";
+import { useModalLogic } from "./useModalLogic";
 import { Box, Button, Link, Text } from "@chakra-ui/react";
 import { ModalClassName } from "./helpers";
 import { createWrapProps, dialogProps } from "./props";
+import { useModalState } from "./useModalState";
 
 interface IModal {
   title: string;
@@ -14,14 +15,16 @@ interface IModal {
 type TUseModal = (isOpenInit?: boolean) => {
   Modal: React.FC<IModal>;
   openModal: () => void;
+  isModalConfirmed: boolean;
 };
 
 export const useModal: TUseModal = (isOpenInit = false) => {
-  const { isModalOpen, openModal, closeModal } = useModalState(isOpenInit);
+  const { isModalOpen, isModalConfirmed, openModal, closeModal, confirmModal } =
+    useModalState(isOpenInit);
   return {
     Modal: ({ title, body, isBlocking = false }) => {
       const refModalWrap = useRef<HTMLElement>(null);
-      useClosingLogic(refModalWrap, closeModal, isBlocking);
+      useModalLogic(refModalWrap, closeModal, confirmModal, isBlocking);
       if (!isModalOpen) return null;
 
       const isVisible = !isBlocking;
@@ -59,6 +62,7 @@ export const useModal: TUseModal = (isOpenInit = false) => {
       );
     },
     openModal,
+    isModalConfirmed,
   };
 };
 export default useModal;
