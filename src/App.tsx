@@ -12,11 +12,13 @@ function App() {
       <Modal
         title="Dismissible Modal"
         body="I am a dismissible modal.  You can get rid of me in a bunch of ways."
+        actions={["Submit"]}
       />
       <Button onClick={() => openModal2()}>Open Modal!</Button>
       <Modal2
         title="Blocking Modal"
         body="I am a blocking modal.  I have no close or cancel button, and you can not dismiss me by clicking the Overlay"
+        actions={["Submit"]}
         isBlocking={true}
       />
     </div>

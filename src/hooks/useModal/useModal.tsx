@@ -14,10 +14,10 @@ import {
 import { useEngagementLogic } from "./hooks/useEngagementLogic";
 import { TActionId, TOpenModal, useModalState } from "./hooks/useModalState";
 
-interface IModal {
+export interface IModal {
   title: string;
   body: string;
-  actions?: string[];
+  actions: string[];
   isBlocking?: boolean;
 }
 
@@ -38,8 +38,6 @@ export const useModal: TUseModal = (isOpenInit = false) => {
 
   return {
     Modal: ({ title, body, isBlocking = false, actions }) => {
-      actions = ["Take the Red Pill", "Take the Blue Pill"];
-
       const refModalWrap = useRef<HTMLElement>(null);
       useEngagementLogic(refModalWrap, closeModal, selectActionId, isBlocking);
       if (!isModalOpen) return null;
