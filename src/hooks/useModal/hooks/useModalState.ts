@@ -1,32 +1,38 @@
 import React, { useCallback } from "react";
+import { TNullable } from "../../../global/types";
+
+export type TActionId = TNullable<number>;
+export type TOpenModal = () => void;
+export type TCloseModal = () => void;
+export type TSelectActionId = (id: TActionId) => void;
 
 type TUseModalState = (isOpenInit: boolean) => {
   isModalOpen: boolean;
-  isModalConfirmed: boolean;
-  openModal: () => void;
-  closeModal: () => void;
-  confirmModal: () => void;
+  selectedActionId: TActionId;
+  openModal: TOpenModal;
+  closeModal: TCloseModal;
+  selectActionId: TSelectActionId;
 };
 export const useModalState: TUseModalState = (isOpenInit) => {
   const [isOpen, setIsOpen] = React.useState(isOpenInit);
-  const [isConfirmed, setIsConfirmed] = React.useState(false);
+  const [actionId, setActionId] = React.useState<TActionId>(null);
 
-  const openModal = useCallback(() => {
+  const openModal: TOpenModal = useCallback(() => {
     setIsOpen(true);
-    setIsConfirmed(false);
+    setActionId(null);
   }, []);
-  const closeModal = useCallback(() => {
+  const closeModal: TCloseModal = useCallback(() => {
     setIsOpen(false);
   }, []);
-  const confirmModal = useCallback(() => {
-    setIsConfirmed(true);
+  const selectActionId = useCallback<TSelectActionId>((id) => {
+    setActionId(id);
   }, []);
 
   return {
     isModalOpen: isOpen,
-    isModalConfirmed: isConfirmed,
+    selectedActionId: actionId,
     openModal,
     closeModal,
-    confirmModal,
+    selectActionId,
   };
 };

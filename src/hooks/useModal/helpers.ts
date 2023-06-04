@@ -1,16 +1,13 @@
-export enum ModalClassName {
+export enum EjectionClassName {
   CLOSE = "modal-close",
   CANCEL = "modal-cancel",
   OVERLAY = "modal-overlay",
-  CONFIRM = "modal-confirm",
 }
 
-export const closingWhitelistNonBlocking = [
-  ModalClassName.CONFIRM,
-  ModalClassName.CLOSE,
-  ModalClassName.CANCEL,
-  ModalClassName.OVERLAY,
+export const allowList_EjectionClassNames_NonBlocking = [
+  EjectionClassName.CLOSE,
+  EjectionClassName.CANCEL,
+  EjectionClassName.OVERLAY,
 ];
-export const closingWhiteListBlocking = [ModalClassName.CONFIRM];
-export const confirmationWhiteList = [ModalClassName.CONFIRM];
+export const allowList_EjectionClassNames_Blocking = [];
 export const modalRoot = document.getElementById("modal-root") || document.body;

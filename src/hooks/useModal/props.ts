@@ -1,4 +1,4 @@
-import { ModalClassName } from "./helpers";
+import { EjectionClassName } from "./helpers";
 import { SystemBreakpoints } from "../../theme/theme";
 
 export const wrapProps = {
@@ -6,13 +6,14 @@ export const wrapProps = {
   as: "article" as "article",
   backgroundColor: "rgba(0,0,0,0.75)",
   bottom: 0,
-  className: ModalClassName.OVERLAY,
+  className: EjectionClassName.OVERLAY,
   display: "flex",
   justifyContent: "center",
   left: 0,
   position: "fixed" as "fixed",
   right: 0,
   top: 0,
+  userSelect: "none" as "none",
   zIndex: 999999,
 };
 
@@ -34,6 +35,7 @@ export const dialogProps = {
     xl: "84%",
   },
   maxWidth: `${SystemBreakpoints.md}px`,
+  userSelect: "text" as "text",
   width: "100%",
 };
 export const titleProps = {
@@ -44,6 +46,7 @@ export const titleProps = {
 const closeButtonHW = 10;
 export const closeButtonProps = {
   variant: "unstyled",
+  children: "Close",
   bg: "lightpink",
   position: "absolute" as "absolute",
   overflow: "hidden",
@@ -74,4 +77,23 @@ export const actionsProps = {
   display: "flex",
   justifyContent: "flex-end",
   gap: 3,
+  flexDir: {
+    base: "column" as "column",
+    md: "row" as "row",
+  },
+};
+
+export const createActionButtonProps = (label: string, i: number) => ({
+  key: `${label}-${i}`,
+  colorScheme: "blue",
+  children: label,
+  "data-action-id": i,
+  order: i + 1,
+});
+export const cancelButtonProps = {
+  children: "Cancel",
+  order: {
+    base: 999999,
+    md: 0,
+  },
 };

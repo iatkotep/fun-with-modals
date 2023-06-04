@@ -1,6 +1,7 @@
 import React from "react";
 import useModal from "../useModal";
 import { Box, Button } from "@chakra-ui/react";
+import { isNull } from "../../../global/helpers";
 
 const BasicModal: React.FC<{
   title: string;
@@ -9,12 +10,14 @@ const BasicModal: React.FC<{
   buttonText?: string;
   isBlocking?: boolean;
 }> = ({ title, body, isBlocking = false, buttonText, isOpenInit = false }) => {
-  const { Modal, openModal, isModalConfirmed } = useModal(isOpenInit);
+  const { Modal, openModal, selectedActionId } = useModal(isOpenInit);
   return (
     <>
       <Button onClick={() => openModal()}>{buttonText}</Button>
       <Modal {...{ title, body, isBlocking }} />
-      {isModalConfirmed && <Box p={5}>Confirmed</Box>}
+      {!isNull(selectedActionId) && (
+        <Box p={5}>You selected Button {selectedActionId}</Box>
+      )}
     </>
   );
 };
