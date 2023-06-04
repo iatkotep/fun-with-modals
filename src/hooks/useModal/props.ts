@@ -25,6 +25,9 @@ export const dialogProps = {
   },
   p: 3,
   position: "relative" as "relative",
+  display: "flex",
+  flexDir: "column" as "column",
+  gap: 3,
   rounded: {
     base: 0,
     md: 5,
@@ -97,3 +100,8 @@ export const cancelButtonProps = {
     md: 0,
   },
 };
+
+export const createDialogSectionProps = (type: "static" | "dynamic") => ({
+  flex: type === "static" ? "none" : 1,
+  overflowY: type === "static" ? ("auto" as "auto") : ("scroll" as "scroll"),
+});

@@ -10,13 +10,14 @@ import {
   actionsProps,
   createActionButtonProps,
   cancelButtonProps,
+  createDialogSectionProps,
 } from "./props";
 import { useEngagementLogic } from "./hooks/useEngagementLogic";
 import { TActionId, TOpenModal, useModalState } from "./hooks/useModalState";
 
 export interface IModal {
   title: string;
-  body: string;
+  body: React.ReactNode;
   actions: string[];
   isBlocking?: boolean;
 }
@@ -49,25 +50,31 @@ export const useModal: TUseModal = (isOpenInit = false) => {
           className={EjectionClassName.OVERLAY}
         >
           <Box {...dialogProps}>
-            <Text {...titleProps}>{title}</Text>
-            <Text>{body}</Text>
             {!isBlocking && (
               <Button
                 {...closeButtonProps}
                 className={EjectionClassName.CLOSE}
               />
             )}
-            <Box {...actionsProps}>
-              {actions?.map((label, i) => (
-                <Button {...createActionButtonProps(label, i)} />
-              ))}
+            <Box {...createDialogSectionProps("static")}>
+              <Text {...titleProps}>{title}</Text>
+            </Box>
+            <Box {...createDialogSectionProps("dynamic")}>
+              <Text>{body}</Text>
+            </Box>
+            <Box {...createDialogSectionProps("static")}>
+              <Box {...actionsProps}>
+                {actions?.map((label, i) => (
+                  <Button {...createActionButtonProps(label, i)} />
+                ))}
 
-              {!isBlocking && (
-                <Button
-                  {...cancelButtonProps}
-                  className={EjectionClassName.CANCEL}
-                />
-              )}
+                {!isBlocking && (
+                  <Button
+                    {...cancelButtonProps}
+                    className={EjectionClassName.CANCEL}
+                  />
+                )}
+              </Box>
             </Box>
           </Box>
         </Box>,
