@@ -14,7 +14,7 @@ const BasicModal: React.FC<{
     <>
       <Button onClick={() => openModal()}>{buttonText}</Button>
       <Modal {...{ title, body, isBlocking }} />
-      {isModalConfirmed && <Box>Confirmed</Box>}
+      {isModalConfirmed && <Box p={5}>Confirmed</Box>}
     </>
   );
 };

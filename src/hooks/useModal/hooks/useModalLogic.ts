@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { arrayIntersection, noop } from "../../global/helpers";
+import { arrayIntersection, noop } from "../../../global/helpers";
 import {
   closingWhiteListBlocking,
   closingWhitelistNonBlocking,
   confirmationWhiteList,
-} from "./helpers";
+} from "../helpers";
 
 type TUseModalLogic = (
   ref: React.RefObject<HTMLElement>,
@@ -42,7 +42,7 @@ export const useModalLogic: TUseModalLogic = (
 
       // Close and/or confirm Modal (or not) based on the above
       if (shouldCloseModal) closeModal();
-      if (shouldConfirmModal) confirmModal();
+      // if (shouldConfirmModal) confirmModal();
     };
 
     const modalNode = ref.current;

@@ -13,3 +13,4 @@ export const closingWhitelistNonBlocking = [
 ];
 export const closingWhiteListBlocking = [ModalClassName.CONFIRM];
 export const confirmationWhiteList = [ModalClassName.CONFIRM];
+export const modalRoot = document.getElementById("modal-root") || document.body;
