@@ -14,7 +14,6 @@ import {
 import { useEngagementLogic } from "./hooks/useEngagementLogic";
 import { TActionId, TOpenModal, useModalState } from "./hooks/useModalState";
 
-type TModalAction = { label: string; callback: () => void };
 interface IModal {
   title: string;
   body: string;
