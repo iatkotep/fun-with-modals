@@ -1,12 +1,14 @@
 import React from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
-export const StoryHeading: React.FC<{
-  storyTitle: string;
-  storyDescription: React.ReactNode;
-}> = ({ storyTitle, storyDescription }) => (
-  <Box mb={10}>
-    <Text {...{ fontSize: "2xl", fontWeight: "bold" }}>{storyTitle}</Text>
-    <Text>{storyDescription}</Text>
-  </Box>
-);
+export const StoryBody: React.FC<{
+  children: React.ReactNode;
+}> = ({ children }) => {
+  const wrapProps = {
+    borderWidth: "1px",
+    borderColor: "gray.200",
+    padding: 5,
+    borderRadius: 5,
+  };
+  return <Box {...wrapProps}>{children}</Box>;
+};
