@@ -103,5 +103,5 @@ export const cancelButtonProps = {
 
 export const createDialogSectionProps = (type: "static" | "dynamic") => ({
   flex: type === "static" ? "none" : 1,
-  overflowY: type === "static" ? ("auto" as "auto") : ("scroll" as "scroll"),
+  overflowY: "auto" as "auto",
 });
