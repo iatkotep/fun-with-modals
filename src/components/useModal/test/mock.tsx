@@ -14,19 +14,22 @@ export const dismissibleProps: IModal = {
 export const blockingProps: IModal = {
   title: "You Have One Option",
   body: "There is only one option. You cannot eject. There are no Close or Cancel buttons in a Blocking Modal, and Overlay ejection is disabled.  Clicking the button is the only action that can be taken.",
-  actions: ["Ok"],
+  actions: ["Take Only Available Action"],
   isBlocking: true,
 };
 export const infoTypeProps: IModal = {
   ...commonSingleOptionProps,
   iconType: "info",
+  actions: ["Confirm Info"],
 };
 export const warningTypeProps: IModal = {
   ...commonSingleOptionProps,
   iconType: "warning",
+  actions: ["Acknowledge Warning"],
 };
 export const errorTypeProps: IModal = {
   ...commonSingleOptionProps,
+  actions: ["Acknowledge Error"],
   iconType: "error",
 };
 export const heavyTextProps: IModal = {
@@ -103,5 +106,5 @@ export const overflowingTextProps: IModal = {
       </p>
     </>
   ),
-  actions: ["Yes", "No", "Maybe"],
+  actions: ["Confirmed"],
 };
