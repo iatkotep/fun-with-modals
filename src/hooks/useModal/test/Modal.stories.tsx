@@ -43,8 +43,8 @@ const actions_too_many = [
 export const SingleAction: Story = {
   args: {
     title: "You Have One Option",
-    body: "There is only one option.  You must take it in order to proceed.",
-    actions: actions_1,
+    body: "There is only one option.  You may cancel out of this modal, but you must choose the option to proceed.",
+    actions: ["Ok"],
   },
 };
 export const TwoActions: Story = {

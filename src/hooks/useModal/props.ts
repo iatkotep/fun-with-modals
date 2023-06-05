@@ -50,7 +50,8 @@ const closeButtonHW = 10;
 export const closeButtonProps = {
   variant: "unstyled",
   children: "Close",
-  bg: "lightpink",
+  // bg: "lightpink",
+  bg: "transparent",
   position: "absolute" as "absolute",
   overflow: "hidden",
   textIndent: "-9999px",
