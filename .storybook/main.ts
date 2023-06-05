@@ -1,6 +1,9 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: [
+    "../src/components/**/*.mdx",
+    "../src/components/**/*.stories.@(js|jsx|ts|tsx)",
+  ],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -12,8 +15,13 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    autodocs: "tag",
+    // autodocs: "tag",
   },
   staticDirs: ["../public"],
+  refs: {
+    "@chakra-ui/react": {
+      disable: true,
+    },
+  },
 };
 export default config;
