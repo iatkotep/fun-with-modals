@@ -17,33 +17,37 @@ export const wrapProps = {
   zIndex: 999999,
 };
 
+const dialogTransitionTime = `0.2s`;
 export const dialogProps = {
+  transition: `min-height ${dialogTransitionTime}, max-height ${dialogTransitionTime}, border-radius ${dialogTransitionTime}`,
   backgroundColor: "white",
-  height: {
-    base: "100%",
-    md: "auto",
-  },
-  p: 3,
-  position: "relative" as "relative",
   display: "flex",
   flexDir: "column" as "column",
   gap: 3,
   rounded: {
     base: 0,
-    md: 5,
+    modalDesktop: 5,
+  },
+  minH: {
+    base: "100%",
+    modalDesktop: 0,
   },
   maxH: {
     base: "100%",
-    md: "72%",
+    modalDesktop: "72%",
     xl: "84%",
   },
-  maxWidth: `${SystemBreakpoints.md}px`,
+  maxWidth: `${SystemBreakpoints.modalDesktop}px`,
+  p: 3,
+  position: "relative" as "relative",
   userSelect: "text" as "text",
   width: "100%",
 };
 export const titleProps = {
   as: "h2" as "h2",
   fontWeight: "bold",
+  display: "flex",
+  alignItems: "center",
 };
 
 const closeButtonHW = 10;
@@ -83,7 +87,7 @@ export const actionsProps = {
   gap: 3,
   flexDir: {
     base: "column" as "column",
-    md: "row" as "row",
+    modalDesktop: "row" as "row",
   },
 };
 
@@ -98,7 +102,7 @@ export const cancelButtonProps = {
   children: "Cancel",
   order: {
     base: 999999,
-    md: 0,
+    modalDesktop: 0,
   },
 };
 
