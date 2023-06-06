@@ -8,10 +8,17 @@ const commonSingleOptionProps = {
   actions: ["Ok"],
 };
 export const dismissibleProps: IModal = {
-  title: "You Have One Option",
+  title: "You Have One Action",
   children:
-    "There is only one option.  You may Close, Cancel, or click the Overlay to eject, but you must choose `Ok` to proceed.",
+    "There is only one Action to take.  You may Close or click the Overlay to eject, but you must choose `Ok` to proceed.",
   actions: ["Ok"],
+};
+export const dismissibleWithCancelProps: IModal = {
+  ...dismissibleProps,
+  title: "You have one Action, with the option to Cancel",
+  cancelText: "Cancel",
+  children:
+    'There is only one Action.  You may Close, Cancel, or click the Overlay to eject, but you must choose `Ok` to proceed."',
 };
 export const blockingProps: IModal = {
   title: "You Have One Option",
