@@ -13,7 +13,10 @@ type TUseModalLogic = (
   isBlocking: boolean
 ) => void;
 
-export const useEngagementLogic: TUseModalLogic = (
+const shouldEject = (targetClassNames: string[], allowList: string[]) =>
+  arrayIntersection(allowList, targetClassNames).length > 0;
+
+export const useModalBehavior: TUseModalLogic = (
   ref,
   closeModal,
   selectActionId,
@@ -22,7 +25,7 @@ export const useEngagementLogic: TUseModalLogic = (
   useEffect(() => {
     if (!ref.current) return noop;
 
-    // Type of Modal determines which element whitelist to use
+    // Type of Modal determines which element allowList to use
     const allowList_EjectionClassNames = isBlocking
       ? allowList_EjectionClassNames_Blocking
       : allowList_EjectionClassNames_NonBlocking;
@@ -38,8 +41,8 @@ export const useEngagementLogic: TUseModalLogic = (
 
       // Close Modal if user has clicked an Ejection element, or if user has clicked an Action element
       const shouldCloseModal =
-        arrayIntersection(allowList_EjectionClassNames, targetClassNames)
-          .length > 0 || !isNull(actionId);
+        shouldEject(targetClassNames, allowList_EjectionClassNames) ||
+        !isNull(actionId);
 
       // Select `actionId` if applicable.  Close Modal if applicable.
       selectActionId(actionId);

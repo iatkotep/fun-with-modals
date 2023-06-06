@@ -26,6 +26,19 @@ export const Dismissible: Story = {
     modalProps: m.dismissibleProps,
   },
 };
+export const DismissibleWithCancel: Story = {
+  args: {
+    storyTitle: "Dismissible Modal",
+    storyDescription: (
+      <p>
+        `Dismissible` is default version of the Modal. A Dismissible Modal has a
+        close button, and automatically
+      </p>
+    ),
+    storyButtonText: "Launch Dismissible Modal",
+    modalProps: m.dismissibleWithCancelProps,
+  },
+};
 
 export const Blocking: Story = {
   args: {
@@ -47,8 +60,8 @@ export const InitializeOpen: Story = {
 };
 export const HeavyText: Story = {
   args: {
-    storyTitle: "Overflowing Text",
-    storyDescription: "The modal handles an abundance of text by ",
+    storyTitle: "Heavy Text",
+    storyDescription: "The modal grows vertically to accommodate more text",
     isOpenInit: true,
     modalProps: m.heavyTextProps,
   },
@@ -56,7 +69,8 @@ export const HeavyText: Story = {
 export const OverflowingText: Story = {
   args: {
     storyTitle: "Overflowing Text",
-    storyDescription: "The modal handles an abundance of text by ",
+    storyDescription:
+      "The modal grows to a max height, determined by browser width, and the modal content becomes scrollable, leaving title and buttons visible",
     isOpenInit: true,
     modalProps: m.overflowingTextProps,
   },

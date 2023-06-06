@@ -15,3 +15,5 @@ export const boolToResponse = (bool?: boolean) => {
   if (bool === undefined) return "Meh";
   return bool ? "Yes" : "No";
 };
+export const getTabIndex = (idx: number, base: number = 0) => base + idx * 10;
+export const getHardwareTabIndex = (idx: number) => getTabIndex(idx, 100);

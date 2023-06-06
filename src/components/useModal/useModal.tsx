@@ -1,7 +1,13 @@
 import React, { useRef } from "react";
 import ReactDOM from "react-dom";
 import { Box, Button, Text } from "@chakra-ui/react";
-import { boolToResponse, EjectionClassName, modalRoot } from "./helpers";
+import {
+  boolToResponse,
+  EjectionClassName,
+  getHardwareTabIndex,
+  getTabIndex,
+  modalRoot,
+} from "./helpers";
 import {
   actionsProps,
   cancelButtonProps,
@@ -12,7 +18,7 @@ import {
   titleProps,
   wrapProps,
 } from "./props";
-import { useEngagementLogic } from "./hooks/useEngagementLogic";
+import { useModalBehavior } from "./hooks/useModalBehavior";
 import { TActionId, TOpenModal, useModalState } from "./hooks/useModalState";
 import ModalIcon, { TModalIconType } from "./_/ModalIcon";
 import ModalBody from "./_/ModalBody/ModalBody";
@@ -53,9 +59,16 @@ export const useModal: TUseModal = (isOpenInit = false) => {
     }) => {
       const refModalWrap = useRef<HTMLElement>(null);
 
-      useEngagementLogic(refModalWrap, closeModal, selectActionId, isBlocking);
+      // Closing and Confirming Logic
+      useModalBehavior(refModalWrap, closeModal, selectActionId, isBlocking);
+
+      // Handle Closed State
       if (!isModalOpen) return null;
 
+      const actionsTabIndexBase = 1000;
+      const topRowIndexBase = 2000;
+
+      // Conditionally visible elements
       const isCloseVisible = !isBlocking;
       const isCancelVisible = allTrue(!isBlocking, !!cancelText);
 
@@ -70,6 +83,7 @@ export const useModal: TUseModal = (isOpenInit = false) => {
               <Button
                 {...closeButtonProps}
                 className={EjectionClassName.CLOSE}
+                tabIndex={topRowIndexBase}
               />
             )}
             <Box {...createDialogSectionProps("static")}>
@@ -84,13 +98,17 @@ export const useModal: TUseModal = (isOpenInit = false) => {
             <Box {...createDialogSectionProps("static")}>
               <Box {...actionsProps}>
                 {actions?.map((label, i) => (
-                  <Button {...createActionButtonProps(label, i)} />
+                  <Button
+                    {...createActionButtonProps(label, i)}
+                    tabIndex={getTabIndex(i, actionsTabIndexBase)}
+                  />
                 ))}
 
                 {isCancelVisible && (
                   <Button
                     {...cancelButtonProps}
                     className={EjectionClassName.CANCEL}
+                    tabIndex={getTabIndex(actions.length, actionsTabIndexBase)}
                   >
                     {cancelText}
                   </Button>
