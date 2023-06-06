@@ -20,6 +20,7 @@ import {
 } from "./props";
 import { useModalBehavior } from "./hooks/useModalBehavior";
 import { TActionId, TOpenModal, useModalState } from "./hooks/useModalState";
+import { CloseIcon } from "@chakra-ui/icons";
 import ModalIcon, { TModalIconType } from "./_/ModalIcon";
 import ModalBody from "./_/ModalBody/ModalBody";
 import { allTrue } from "../../global/helpers";
@@ -57,7 +58,7 @@ export const useModal: TUseModal = (isOpenInit = false) => {
       actions,
       iconType,
     }) => {
-      const refModalWrap = useRef<HTMLElement>(null);
+      const refModalWrap = useRef<HTMLDivElement>(null);
 
       // Closing and Confirming Logic
       useModalBehavior(refModalWrap, closeModal, selectActionId, isBlocking);
@@ -84,7 +85,9 @@ export const useModal: TUseModal = (isOpenInit = false) => {
                 {...closeButtonProps}
                 className={EjectionClassName.CLOSE}
                 tabIndex={topRowIndexBase}
-              />
+              >
+                <CloseIcon />
+              </Button>
             )}
             <Box {...createDialogSectionProps("static")}>
               <Text {...titleProps}>

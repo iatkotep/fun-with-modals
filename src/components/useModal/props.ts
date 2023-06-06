@@ -1,9 +1,12 @@
 import { EjectionClassName } from "./helpers";
 import { SystemBreakpoints } from "../../theme/theme";
+import { CloseIcon } from "@chakra-ui/icons";
+
+export const modalTitleHtmlId = "modal-title";
+export const modalBodyHtmlId = "modal-body";
 
 export const wrapProps = {
   alignItems: "center",
-  as: "article" as "article",
   backgroundColor: "rgba(0,0,0,0.75)",
   bottom: 0,
   className: EjectionClassName.OVERLAY,
@@ -19,6 +22,12 @@ export const wrapProps = {
 
 const dialogTransitionTime = `0.2s`;
 export const dialogProps = {
+  as: "article" as "article",
+
+  role: "modaldialog",
+  "aria-modal": true,
+  "aria-labelledby": modalTitleHtmlId,
+  "aria-describedby": modalBodyHtmlId,
   transition: `min-height ${dialogTransitionTime}, max-height ${dialogTransitionTime}, border-radius ${dialogTransitionTime}`,
   backgroundColor: "white",
   display: "flex",
@@ -44,6 +53,7 @@ export const dialogProps = {
   width: "100%",
 };
 export const titleProps = {
+  id: modalTitleHtmlId,
   as: "h2" as "h2",
   fontWeight: "bold",
   display: "flex",
@@ -53,8 +63,6 @@ export const titleProps = {
 const closeButtonHW = 10;
 export const closeButtonProps = {
   variant: "unstyled",
-  children: "Close",
-  // bg: "lightpink",
   bg: "transparent",
   position: "absolute" as "absolute",
   overflow: "hidden",
