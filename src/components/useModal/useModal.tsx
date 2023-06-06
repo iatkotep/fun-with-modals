@@ -14,8 +14,8 @@ import {
 } from "./props";
 import { useEngagementLogic } from "./hooks/useEngagementLogic";
 import { TActionId, TOpenModal, useModalState } from "./hooks/useModalState";
-import ModalIcon, { TModalIconType } from "./ModalIcon";
-import ModalBody from "./ModalBody/ModalBody";
+import ModalIcon, { TModalIconType } from "./_/ModalIcon";
+import ModalBody from "./_/ModalBody/ModalBody";
 import { allTrue } from "../../global/helpers";
 
 export interface IModal {
