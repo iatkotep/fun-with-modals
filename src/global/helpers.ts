@@ -5,3 +5,5 @@ export const arrayIntersection = <T = any>(a: T[], b: T[]) => {
 };
 export const isNumeric = (n: any) => !isNaN(parseFloat(n)) && isFinite(n);
 export const isNull = (n: any) => n === null;
+export const allTrue = (...arr: boolean[]) =>
+  arr.length === 0 || arr.every((x) => x);

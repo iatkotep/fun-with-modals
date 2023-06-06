@@ -1,27 +1,27 @@
 import React, { useRef } from "react";
 import ReactDOM from "react-dom";
 import { Box, Button, Text } from "@chakra-ui/react";
-import { EjectionClassName, modalRoot } from "./helpers";
+import { boolToResponse, EjectionClassName, modalRoot } from "./helpers";
 import {
-  wrapProps,
+  actionsProps,
+  cancelButtonProps,
+  closeButtonProps,
+  createActionButtonProps,
+  createDialogSectionProps,
   dialogProps,
   titleProps,
-  closeButtonProps,
-  actionsProps,
-  createActionButtonProps,
-  cancelButtonProps,
-  createDialogSectionProps,
+  wrapProps,
 } from "./props";
 import { useEngagementLogic } from "./hooks/useEngagementLogic";
 import { TActionId, TOpenModal, useModalState } from "./hooks/useModalState";
-import ModalIcon from "./ModalIcon";
+import ModalIcon, { TModalIconType } from "./ModalIcon";
 import ModalBody from "./ModalBody/ModalBody";
-
-export type TModalIconType = "info" | "warning" | "error";
+import { allTrue } from "../../global/helpers";
 
 export interface IModal {
   title: string;
-  body: React.ReactNode;
+  children: React.ReactNode;
+  cancelText?: string;
   actions: string[];
   isBlocking?: boolean;
   iconType?: TModalIconType;
@@ -43,11 +43,21 @@ export const useModal: TUseModal = (isOpenInit = false) => {
   } = useModalState(isOpenInit);
 
   return {
-    Modal: ({ title, body, isBlocking = false, actions, iconType }) => {
+    Modal: ({
+      title,
+      children,
+      isBlocking = false,
+      cancelText,
+      actions,
+      iconType,
+    }) => {
       const refModalWrap = useRef<HTMLElement>(null);
 
       useEngagementLogic(refModalWrap, closeModal, selectActionId, isBlocking);
       if (!isModalOpen) return null;
+
+      const isCloseVisible = !isBlocking;
+      const isCancelVisible = allTrue(!isBlocking, !!cancelText);
 
       return ReactDOM.createPortal(
         <Box
@@ -56,7 +66,7 @@ export const useModal: TUseModal = (isOpenInit = false) => {
           className={EjectionClassName.OVERLAY}
         >
           <Box {...dialogProps}>
-            {!isBlocking && (
+            {isCloseVisible && (
               <Button
                 {...closeButtonProps}
                 className={EjectionClassName.CLOSE}
@@ -69,7 +79,7 @@ export const useModal: TUseModal = (isOpenInit = false) => {
               </Text>
             </Box>
             <Box {...createDialogSectionProps("dynamic")}>
-              <ModalBody>{body}</ModalBody>
+              <ModalBody>{children}</ModalBody>
             </Box>
             <Box {...createDialogSectionProps("static")}>
               <Box {...actionsProps}>
@@ -77,11 +87,13 @@ export const useModal: TUseModal = (isOpenInit = false) => {
                   <Button {...createActionButtonProps(label, i)} />
                 ))}
 
-                {!isBlocking && (
+                {isCancelVisible && (
                   <Button
                     {...cancelButtonProps}
                     className={EjectionClassName.CANCEL}
-                  />
+                  >
+                    {cancelText}
+                  </Button>
                 )}
               </Box>
             </Box>

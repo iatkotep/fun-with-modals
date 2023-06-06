@@ -99,7 +99,6 @@ export const createActionButtonProps = (label: string, i: number) => ({
   order: i + 1,
 });
 export const cancelButtonProps = {
-  children: "Cancel",
   order: {
     base: 999999,
     modalDesktop: 0,

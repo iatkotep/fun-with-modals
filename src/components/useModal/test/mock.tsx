@@ -3,17 +3,20 @@ import { IModal } from "../useModal";
 // Single Option
 const commonSingleOptionProps = {
   title: "You Have One Option",
-  body: "There is only one option.  You may cancel out of this modal, but you must choose the option to proceed.",
+  children:
+    "There is only one option.  You may cancel out of this modal, but you must choose the option to proceed.",
   actions: ["Ok"],
 };
 export const dismissibleProps: IModal = {
   title: "You Have One Option",
-  body: "There is only one option.  You may Close, Cancel, or click the Overlay to eject, but you must choose `Ok` to proceed.",
+  children:
+    "There is only one option.  You may Close, Cancel, or click the Overlay to eject, but you must choose `Ok` to proceed.",
   actions: ["Ok"],
 };
 export const blockingProps: IModal = {
   title: "You Have One Option",
-  body: "There is only one option. You cannot eject. There are no Close or Cancel buttons in a Blocking Modal, and Overlay ejection is disabled.  Clicking the button is the only action that can be taken.",
+  children:
+    "There is only one option. You cannot eject. There are no Close or Cancel buttons in a Blocking Modal, and Overlay ejection is disabled.  Clicking the button is the only action that can be taken.",
   actions: ["Take Only Available Action"],
   isBlocking: true,
 };
@@ -35,7 +38,7 @@ export const errorTypeProps: IModal = {
 export const heavyTextProps: IModal = {
   ...commonSingleOptionProps,
   title: "Heavy Text",
-  body: (
+  children: (
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -51,7 +54,7 @@ export const heavyTextProps: IModal = {
 
 export const overflowingTextProps: IModal = {
   title: "Overflowing Text",
-  body: (
+  children: (
     <>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

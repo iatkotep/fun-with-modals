@@ -9,18 +9,14 @@ function App() {
   return (
     <div className="App">
       <Button onClick={() => openModal()}>Open Dismissible Modal!</Button>
-      <Modal
-        title="Dismissible Modal"
-        body="I am a dismissible modal.  You can get rid of me in a bunch of ways."
-        actions={["Submit"]}
-      />
+      <Modal title="Dismissible Modal" actions={["Submit"]}>
+        I am a dismissible modal. You can get rid of me in a bunch of ways.
+      </Modal>
       <Button onClick={() => openModal2()}>Open Modal!</Button>
-      <Modal2
-        title="Blocking Modal"
-        body="I am a blocking modal.  I have no close or cancel button, and you can not dismiss me by clicking the Overlay"
-        actions={["Submit"]}
-        isBlocking={true}
-      />
+      <Modal2 title="Blocking Modal" actions={["Submit"]} isBlocking={true}>
+        I am a blocking modal. I have no close or cancel button, and you can not
+        dismiss me by clicking the Overlay
+      </Modal2>
     </div>
   );
 }

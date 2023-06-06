@@ -11,3 +11,7 @@ export const allowList_EjectionClassNames_NonBlocking = [
 ];
 export const allowList_EjectionClassNames_Blocking = [];
 export const modalRoot = document.getElementById("modal-root") || document.body;
+export const boolToResponse = (bool?: boolean) => {
+  if (bool === undefined) return "Meh";
+  return bool ? "Yes" : "No";
+};
