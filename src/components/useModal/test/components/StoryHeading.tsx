@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
+import { StoryBody } from "./StoryBody";
 
 export const StoryHeading: React.FC<{
   storyTitle: string;
@@ -14,7 +15,9 @@ export const StoryHeading: React.FC<{
   return (
     <Box {...headingProps}>
       <Text {...{ fontSize: "2xl", fontWeight: "bold" }}>{storyTitle}</Text>
-      <Text>{storyDescription}</Text>
+      <StoryBody>
+        <Text>{storyDescription}</Text>
+      </StoryBody>
     </Box>
   );
 };

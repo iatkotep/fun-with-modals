@@ -1,4 +1,4 @@
-import { IModal } from "../useModal";
+import { IModal } from "../../useModal";
 
 // Single Option
 const commonSingleOptionProps = {
@@ -11,6 +11,12 @@ export const dismissibleProps: IModal = {
   title: "You Have One Action",
   children:
     "There is only one Action to take.  You may Close or click the Overlay to eject, but you must choose `Ok` to proceed.",
+  actions: ["Ok"],
+};
+export const initializeOpenProps: IModal = {
+  title: "Initialize Open",
+  children:
+    "By supplying a true value to the `isOpenInit` parameter of the `useModal` hook, the state of the modal can be initialized to Open",
   actions: ["Ok"],
 };
 export const dismissibleWithCancelProps: IModal = {

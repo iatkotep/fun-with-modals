@@ -27,7 +27,7 @@ import { allTrue } from "../../global/helpers";
 
 export interface IModal {
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   cancelText?: string;
   actions: string[];
   isBlocking?: boolean;

@@ -5,10 +5,14 @@ export const StoryBody: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const wrapProps = {
-    borderWidth: "1px",
-    borderColor: "gray.200",
-    padding: 5,
-    borderRadius: 5,
+    sx: {
+      p: {
+        mt: 5,
+      },
+      "& > *:first-child": {
+        mt: 0,
+      },
+    },
   };
   return <Box {...wrapProps}>{children}</Box>;
 };
