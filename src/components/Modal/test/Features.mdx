@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Modal/Features" />
+
+# Modal
+
+The Modal component is a user interface element designed to display information or interact with users in a focused and attention-grabbing manner. It provides a way to present content, gather input, or request confirmation from users. Here's a description of the Modal's features in non-technical terms:
+1. **Title**: The Modal component allows you to set a title that describes the purpose or topic of the modal. It helps users quickly understand what the modal is about.
+
+1. **Content**: The modal supports `string` or `JSX` content
+
+1. **Actions**: The Modal component allows you to define one or more actions that users can take. These actions are represented as buttons and can have different labels, such as "OK," "Submit," or "Delete." Each action triggers a particular behavior when clicked.  Actions are distinct from **Ejection** methods, which exit the modal without taking action.
+
+1. **Responsive Behavior**: The modal occupies the full screen of a device with screen-width less than 600px.  For larger screens, the modal is centered on an overlay.
+
+1. **Ejection**: The modal is built to give a user a number of ways to exit without taking an action.  The user may click the **Close** button, an optional **Cancel** button, or click outside the modal on the overlay.
+
+1. **Blocking Behavior**: In some cases, you may want to force users to take a modal action by removing Ejection methods. The Modal component offers a feature called `isBlocking`, which, when set to `true`, renders the modal without a **Close** or **Cancel** button, and disables ejection on click of the overlay.
+
+1. **Icon Type**: Optionally, you can include an icon within the modal to provide visual cues or indicators. The icon can help convey additional meaning or enhance the overall user experience.
+
+By combining these features, the Modal component provides a flexible and customizable way to present information or confirm actions within your webpage or application. It helps ensure that important messages or interactions receive the user's attention and allows for a smooth and intuitive user experience.

@@ -1,0 +1,67 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Modal/API"/>
+
+# Modal Component
+Modal relies upon a custom Hook to allocate state, and generate the component
+
+## useModal
+Custom hook that optionally accepts an initial Open state.  Allocates Visibility and Action state.  Generates and returns a Modal component, a Modal opener, and the Action state.
+
+```
+useModal( isOpenInit?: boolean ) => {
+  Modal: React.FC,
+  openModal: () => void,
+  selectedActionId
+}
+```
+#### Parameters
+- `isOpenInit`: `boolean` _(optional. Defaults to `false`)_ - The initial visibility state of the generated Modal component
+
+#### Returns
+- `Modal`: `React.FC`
+- `openModal`: `() => void`
+- `selectedActionId`: `number` or `null`
+
+
+## Modal
+Modal Component that is returned from `useModal`
+
+#### Props
+- `title`: `string` - The Modal title
+- `actions`: `string[]` - The label of each Action button
+- `cancelText`: `string` _(optional. Defaults to `undefined`)_ - If present, renders a Cancel button with the specified text
+- `isBlocking`: `boolean` _(optional. Defaults to `false`)_ - When set to true, renders the Modal without Close or Cancel buttons, and disables ejection when clicking Modal overlay
+- `iconType`: `'info'`, `'warning'`, or `'error'` _(optional. Defaults to `undefined`)_ - If present, renders a contextually relevant icon next to the Modal title
+
+#### Children
+`string` or `JSX` - The body of the modal is provided as the content of the Modal component
+
+## Usage
+
+The following is an example of how to generate the modal from the useModal hook, how to launch the Modal, and how to respond to a selected action.
+
+```
+import { useModal } from "./components/Modal";
+
+const ContainingComponent = () => {
+  const { Modal, openModal, selectedActionId } = useModal();
+
+  return (
+    <>
+      <button onClick={() => openModal()}>Launch Modal</button>
+
+      <Modal title={'Modal Title'} actions={['Ok']}>
+        This is Modal Content
+      </Modal>
+
+      {(selectedActionId !== null) && (
+        <div>You took Modal action {selectedActionId}.</div>
+      )}
+    </>
+  )
+}
+```
+
+
+
