@@ -19,7 +19,7 @@ const lookupIconColor = {
   error: "red.500",
 };
 
-export type TModalIconType = "info" | "question" | "warning" | "error";
+export type TModalIconType = "info" | "warning" | "error";
 const ModalIcon: React.FC<{ type: TModalIconType }> = ({ type }) => {
   const ModalIcon = lookupIconComponent[type];
   return <ModalIcon color={lookupIconColor[type]} mr={1} />;
