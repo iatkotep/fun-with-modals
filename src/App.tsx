@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { useModal } from "./components/useModal";
+import { useModal } from "./components/Modal";
 import { Button } from "@chakra-ui/react";
 
 function App() {
