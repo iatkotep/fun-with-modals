@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# Modal Component
+Modal relies upon a custom Hook to allocate state, and generate the component
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## useModal
+Custom hook that optionally accepts an initial Open state.  Allocates Visibility and Action state.  Generates and returns a Modal component, a Modal opener, and the Action state.
 
-## Available Scripts
+```
+useModal( isOpenInit?: boolean ) => {
+  Modal: React.FC,
+  openModal: () => void,
+  selectedActionId
+}
+```
+#### Parameters
+- `isOpenInit`: `boolean` _(optional. Defaults to `false`)_ - The initial visibility state of the generated Modal component
 
-In the project directory, you can run:
+#### Returns
+- `Modal`: `React.FC`
+- `openModal`: `() => void`
+- `selectedActionId`: `number` or `null`
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Modal
+Modal Component that is returned from `useModal`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### Props
+- `title`: `string` - The Modal title
+- `actions`: `string[]` - The label of each Action button
+- `cancelText`: `string` _(optional. Defaults to `undefined`)_ - If present, renders a Cancel button with the specified text
+- `isBlocking`: `boolean` _(optional. Defaults to `false`)_ - When set to true, renders the Modal without Close or Cancel buttons, and disables ejection when clicking Modal overlay
+- `iconType`: `'info'`, `'warning'`, or `'error'` _(optional. Defaults to `undefined`)_ - If present, renders a contextually relevant icon next to the Modal title
 
-### `npm test`
+#### Children
+`string` or `JSX` - The body of the modal is provided as the content of the Modal component
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+The following is an example of how to generate the modal from the useModal hook, how to launch the Modal, and how to respond to a selected action.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+import { useModal } from "./components/Modal";
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const ContainingComponent = () => {
+  const { Modal, openModal, selectedActionId } = useModal();
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  return (
+    <>
+      <button onClick={() => openModal()}>Launch Modal</button>
 
-### `npm run eject`
+      <Modal title={'Modal Title'} actions={['Ok']}>
+        This is Modal Content
+      </Modal>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+      {(selectedActionId !== null) && (
+        <div>You took Modal action {selectedActionId}.</div>
+      )}
+    </>
+  )
+}
+```
