@@ -4,18 +4,20 @@ import { Meta } from '@storybook/blocks';
 
 # Notes
 
-### Mention-worthy
-
 Built with **Chakra UI**. I think it does a great job of providing css-in-js functionality without all the boilerplate you get from Styled Components.  It also has a very well wrought and flexible styling system that very effectively abstracts style rules away from component logic.
 
 I'm using event delegation to handle Modal Behavior.  It felt like the natural way to go, since I was dealing with an abundance of elements triggering a small number of events. It was lighter weight and more extensible than having to bury callbacks into every element that needed to either close or confirm (or both!) the modal.
 
 Rendering Modal at the top of the Dom tree using a React Portal.
 
+#### Stories
+The Stories I have written for this presentation are divided into two categories:
+- **Developer**: These Stories were created to display the Modal in all its possible states.  They provide visual testing.
+- **Product**: These Stories were created to show how the Modal can be used.  This is a small sampling of the possible use cases.
 
-# Things I don't like
+## Things I would do differently
 #### Documentation
-Using Storybook for everything for this presentation.  It's a nice compromise between development, testing, and documentation. Would prefer a fleshed out README.md and jsDoc comments in the code.
+I am using Storybook for everything for this presentation.  It's a nice compromise between development, testing, and documentation. Would prefer a fleshed out README.md and jsDoc comments in the code.
 
 ***
 

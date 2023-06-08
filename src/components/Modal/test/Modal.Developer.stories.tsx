@@ -61,7 +61,7 @@ export const TypeInfo: Story = {
 };
 export const TypeWarning: Story = {
   args: {
-    storyTitle: "Info Modal",
+    storyTitle: "Warning Modal",
     storyDescription: "This is a Warning Modal",
     storyButtonText: "Re-Launch Warning Modal",
     modalProps: m.warningTypeProps,
@@ -69,7 +69,7 @@ export const TypeWarning: Story = {
 };
 export const TypeError: Story = {
   args: {
-    storyTitle: "Info Modal",
+    storyTitle: "Error Modal",
     storyDescription: "This is an Error Modal",
     storyButtonText: "Re-Launch Error Modal",
     modalProps: m.errorTypeProps,
