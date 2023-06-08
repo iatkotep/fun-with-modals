@@ -26,6 +26,11 @@ export const errorModalProps: IModal = {
   actions: ["OK"],
   isBlocking: true,
 };
+export const multipleChoiceProps: IModal = {
+  title: "Who is your favorite Beatle?",
+  children: "Which of the Fab Four is your favorite?",
+  actions: ["John", "Paul", "George", "Ringo"],
+};
 export const termsConditionsModalProps: IModal = {
   title: "Terms and Conditions",
   children: (

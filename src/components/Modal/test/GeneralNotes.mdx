@@ -111,8 +111,9 @@ import { Meta } from '@storybook/blocks';
   `}
 </style>
 
-# W
-orthy of Note
+# Notes
+
+### Mention-worthy
 
 Built with **Chakra UI**. I think it does a great job of providing css-in-js functionality without all the boilerplate you get from Styled Components.  It also has a very well wrought and flexible styling system that very effectively abstracts style rules away from component logic.
 
@@ -122,14 +123,50 @@ Rendering Modal at the top of the Dom tree using a React Portal.
 
 
 # Things I don't like
-- Documentation -  Using Storybook for everything for this presentation.  It's a nice compromise between development, testing, and documentation. Would prefer a fleshed out README.md and jsDoc comments in the code.
-- Jest tests - Omitted for lack of time.  I have a patterned way of streamlining my stories and tests, which I have done here.  I've put myself in a place where Jest tests will be easy to write.
-- Modal analytics support - state changes in the modal prevent native button events from firing.  What I have meets requirements of the Spec, but would have preferred to have an additional layer of functionality
-- Modal Forms - Another issue with Modal State management.  Including a Modal Body that managed its own state was creating rerender issues.  I didn't have time to dig into what and when to memoize.
-- Scroll Blocking - It feels natural for a modal to block scrolling functionality while open.  I was not comfortable introducing that, since each Modal manages its own state. it didn't feel right to give the Modal that level of control over the page.  I could see that causing all kinds of problems down the road.  Scroll Blocking would have been appropriate if I had a global system for managing Modal state, and an observer that could keep an eye on that state, and block the scrollbar whenever a modal opened.
-- using css classes to trigger Modal behavior.  event delegate detects the classes present on a clicked element, and intersects with an allowList. This was for convenience, in practice, I don't think css classes are the right tool for this job.
-- The way I'm handling conditional rendering of the Cancel button feels a little unnatural.  In a real-life scenario, I would prefer a more ergonomic interface.
-- JSX markup is not as lean as I'd like.  My preference is to define props in a separate object, and then spread them into the component.  This is a little more verbose, but I think it makes the code more digestible. What I have presented here is a mix of spread props and html-style attributes.  I would prefer to be consistent.
-- No graceful degradation styles for a modal with too many buttons.  I wanted a scrolling overflow, but I was encountering styling issues while trying to implement.
-- hooks are difficult to test.  You can't just test what you've made like a component, you have to write a new component to pull the hook in.  Adds overhead.
-yarn
+#### Documentation
+Using Storybook for everything for this presentation.  It's a nice compromise between development, testing, and documentation. Would prefer a fleshed out README.md and jsDoc comments in the code.
+
+***
+
+#### Jest tests
+Omitted for lack of time.  I have a patterned way of streamlining my stories and tests, which I have done here.  I've put myself in a place where Jest tests will be easy to write.
+
+***
+
+#### No Modal analytics support
+state changes in the modal prevent native button events from firing.  What I have meets requirements of the Spec, but would have preferred to have an additional layer of functionality
+
+***
+
+#### Modal Forms
+Another issue with Modal State management.  Including a Modal Body that managed its own state was creating rerender issues.  I didn't have time to dig into what and when to memoize.
+
+***
+
+#### No Scroll Blocking
+It feels natural for a modal to block scrolling functionality while open.  I was not comfortable introducing that here. Since each Modal manages its own state, it would be up to each Modal to disable the scrollbar.  That presents a jurisdiction conflict.  I believe that the scrollbar belongs to the App.
+
+***
+
+#### Using css classes to trigger Modal behavior
+My event delegate uses css classes to determine if something important has been clicked. This was for convenience. In practice, I don't think css classes are the right tool for this job.
+
+***
+
+#### Method for conditional Cancel renderiong
+Supplying button text as a mechanism for conditional rendering feels a little unnatural.  In a real-life scenario, I would prefer a more ergonomic interface.
+
+***
+
+#### Messy JSX
+My preference is to define props in an object literal, and then spread them into a JSX element.  This results in very terse and digestible view markup, and allows me to lift the props out of the JSX, and rehome them if needed into a props.ts file.  Sometimes I will use html-style attribute props, but I try to be consistent.  How I handle props for any component is unique to that component, and evolves throughout the development process.  The JSX is messy right now, and needs to be tidied up.
+
+***
+
+#### No style handling for "too many buttons"
+I wanted a scrolling overflow, with a maxheight on the mobile view, but I was encountering styling issues while trying to implement.
+
+***
+
+#### Hooks are difficult to test
+You can't just test what you've made like a component, you have to write a new component to pull the hook in.  Adds overhead.

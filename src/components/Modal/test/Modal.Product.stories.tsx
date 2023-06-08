@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as m from "./mock/user";
+import * as m from "./mock/product";
 import { ModalUserStory } from "./components";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
@@ -27,6 +27,17 @@ export const ConfirmationModal: Story = {
     modalProps: m.confirmationModalProps,
   },
 };
+export const MultipleChoiceModal: Story = {
+  args: {
+    userStory: (
+      <>
+        <p>As a user, I want to choose one of several options</p>
+      </>
+    ),
+    storyButtonText: "Launch Multiple Choice Modal",
+    modalProps: m.multipleChoiceProps,
+  },
+};
 export const TermsAndConditionsModal: Story = {
   args: {
     userStory: (
@@ -43,22 +54,25 @@ export const TermsAndConditionsModal: Story = {
 };
 export const InformationModal: Story = {
   args: {
-    userStory: "As a user, I want to view important information",
+    userStory: <p>As a user, I want to view important information</p>,
     storyButtonText: "Launch Modal",
     modalProps: m.informationModalProps,
   },
 };
 export const WarningModal: Story = {
   args: {
-    userStory:
-      "As a user, I want to be notified about a potentially problematic event",
+    userStory: (
+      <p>
+        As a user, I want to be notified about a potentially problematic event
+      </p>
+    ),
     storyButtonText: "Launch Modal",
     modalProps: m.warningModalProps,
   },
 };
 export const ErrorModal: Story = {
   args: {
-    userStory: "As a user, I want to be notified about a critical error",
+    userStory: <p>As a user, I want to be notified about a critical error</p>,
     storyButtonText: "Launch Modal",
     modalProps: m.errorModalProps,
   },
