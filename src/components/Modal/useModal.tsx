@@ -27,7 +27,7 @@ import { allTrue } from "../../global/helpers";
 
 export interface IModal {
   title: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
   cancelText?: string;
   actions: string[];
   isBlocking?: boolean;
@@ -40,6 +40,20 @@ type TUseModal = (isOpenInit?: boolean) => {
   selectedActionId: TActionId;
 };
 
+/**
+ *  @class useModalReturn
+ *  @type {Object}
+ *  @property {React.FC} Modal The Modal Component.
+ *  @property {function} openModal The the function that opens the Modal.
+ *  @property {number | null} selectedActionId The Modal selection state
+ */
+
+/**
+ * @function useModal
+ * @param isOpenInit
+ * @description Generates and provides a Modal Component, a function to open the Modal, and a value to track Modal interaction state.
+ * @returns useModalReturn
+ */
 export const useModal: TUseModal = (isOpenInit = false) => {
   const {
     isModalOpen,

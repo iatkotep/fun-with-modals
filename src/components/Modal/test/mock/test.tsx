@@ -16,7 +16,7 @@ export const dismissibleProps: IModal = {
 export const initializeOpenProps: IModal = {
   title: "Initialize Open",
   children:
-    "By supplying a true value to the `isOpenInit` parameter of the `useModal` hook, the state of the modal can be initialized to Open",
+    "By supplying a true value to the `isOpenInit` parameter of the `Modal` hook, the state of the modal can be initialized to Open",
   actions: ["Ok"],
 };
 export const dismissibleWithCancelProps: IModal = {

@@ -104,20 +104,39 @@ import { Meta } from '@storybook/blocks';
       font-size: 12px;
       display: inline-block;
     }
+
+    pre, code {
+      font-weight: bold;
+    }
   `}
 </style>
 
 # Modal Component
+Modal Component relies upon a custom Hook to allocate state, and use that state in a component the Hook generates.
 
-Storybook helps you build UI components in isolation from your app's business logic, data, and context.
-That makes it easy to develop hard-to-reach states. Save these UI states as **stories** to revisit during development, testing, or QA.
+## useModal
+Custom hook that optionally accepts an initial Open state.  Allocates Visibility and Action state.  Generates and returns a Modal component, a Modal opener, and the Action state.
 
 ```
-
-const { Modal, openModal, selectedActionId } = useModal(isOpenInit);
+useModal( isOpenInit?: boolean ) => {
+  Modal: React.FC,
+  openModal: () => void,
+  selectedActionId
+}
 ```
+#### Parameters
+- `isOpenInit`: `boolean` (optional) - defaults to `false`
+
+#### Returns
+- `Modal`: `React.FC`
+- `openModal`: `() => void`
+- `selectedActionId`: `number | null`
 
 
-Browse example stories now by navigating to them in the sidebar.
-View their code in the `stories` directory to learn how they work.
-We recommend building UIs with a [**component-driven**](https://componentdriven.org) process starting with atomic components and ending with pages.
+## Modal
+Modal Component that is returned from `useModal`
+
+#### Props
+- `isOpenInit`: `boolean` (optional) - defaults to `false`
+
+

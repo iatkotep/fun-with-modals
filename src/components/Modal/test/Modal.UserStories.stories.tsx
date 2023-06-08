@@ -27,6 +27,20 @@ export const ConfirmationModal: Story = {
     modalProps: m.confirmationModalProps,
   },
 };
+export const TermsAndConditionsModal: Story = {
+  args: {
+    userStory: (
+      <>
+        <p>
+          As a user, I want to be presented with Terms and Conditions, and be
+          able to either Accept or Decline.
+        </p>
+      </>
+    ),
+    storyButtonText: "Launch Terms and Condtions Modal",
+    modalProps: m.termsConditionsModalProps,
+  },
+};
 export const InformationModal: Story = {
   args: {
     userStory: "As a user, I want to view important information",
