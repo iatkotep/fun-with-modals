@@ -1,4 +1,9 @@
 # Modal Component
+
+v0.0.3
+
+***
+
 Modal relies upon a custom Hook to allocate state, and generate the component
 
 ## useModal

@@ -4,18 +4,26 @@ import { Meta } from '@storybook/blocks';
 
 # Notes
 
-Built with **Chakra UI**. I think it does a great job of providing css-in-js functionality without all the boilerplate you get from Styled Components.  It also has a very well wrought and flexible styling system that very effectively abstracts style rules away from component logic.
+Built with **Chakra UI**. I think it does a great job of providing css-in-js functionality without all the boilerplate you get from Styled Components.  It gives nice css-in-js functionality without Styled Components boilerplate, and it has a really excellent style system.
 
 I'm using event delegation to handle Modal Behavior.  It felt like the natural way to go, since I was dealing with an abundance of elements triggering a small number of events. It was lighter weight and more extensible than having to bury callbacks into every element that needed to either close or confirm (or both!) the modal.
 
+I added blocking behavior to the Modal spec, which removes the option to eject.  I think it's a natural behavior for a modal, and it was easy to implement.
+
+I adjusted the spec to have buttons hug the bottom of the viewport when modal is full screen at mobile width.
+
 Rendering Modal at the top of the Dom tree using a React Portal.
+
+
 
 #### Stories
 The Stories I have written for this presentation are divided into two categories:
 - **Developer**: These Stories were created to display the Modal in all its possible states.  They provide visual testing.
 - **Product**: These Stories were created to show how the Modal can be used.  This is a small sampling of the possible use cases.
 
+
 ## Things I would do differently
+
 #### Documentation
 I am using Storybook for everything for this presentation.  It's a nice compromise between development, testing, and documentation. Would prefer a fleshed out README.md (rather than a copy of my API notes) and jsDoc comments in the code.
 
@@ -61,5 +69,12 @@ I wanted a scrolling overflow, with a max-height on the mobile view, but I was e
 
 ***
 
+#### Action Identification slightly clunky
+Because I'm using array indeces to denote my action ids, I'm always going to get a 0 id.  This means I can't do a boolean existence check to see if an action has been selected, because 0 is a falsey value.  so I have to go the extra mile and check for "not null" on the action id.  That doesn't make for a 100% intuitive developer experience.  I could solve the problem by changing the "nothing selected" value from null to -1, but that feels hacky.  The absence of a value should not be represented by a value.  It needs to be null
+
+***
+
 #### Hooks are difficult to test
 You can't just test what you've made like a component, you have to write a new component to pull the hook in.  Adds overhead.
+
+
