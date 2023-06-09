@@ -1,3 +1,5 @@
+import { arrayIntersection } from "../../global/helpers";
+
 export enum EjectionClassName {
   CLOSE = "modal-close",
   CANCEL = "modal-cancel",
@@ -17,3 +19,5 @@ export const boolToResponse = (bool?: boolean) => {
 };
 export const getTabIndex = (idx: number, base: number = 0) => base + idx * 10;
 export const getHardwareTabIndex = (idx: number) => getTabIndex(idx, 100);
+export const shouldEject = (targetClassNames: string[], allowList: string[]) =>
+  arrayIntersection(allowList, targetClassNames).length > 0;

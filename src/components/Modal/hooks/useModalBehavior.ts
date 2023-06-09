@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { arrayIntersection, isNull, noop } from "../../../global/helpers";
+import { isNull, noop } from "../../../global/helpers";
 import {
   allowList_EjectionClassNames_Blocking,
   allowList_EjectionClassNames_NonBlocking,
+  shouldEject,
 } from "../helpers";
 import { TActionId, TCloseModal, TSelectActionId } from "./useModalState";
 
@@ -12,9 +13,6 @@ type TUseModalLogic = (
   selectActionId: TSelectActionId,
   isBlocking: boolean
 ) => void;
-
-const shouldEject = (targetClassNames: string[], allowList: string[]) =>
-  arrayIntersection(allowList, targetClassNames).length > 0;
 
 export const useModalBehavior: TUseModalLogic = (
   ref,
