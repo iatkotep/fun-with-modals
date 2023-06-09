@@ -13,6 +13,31 @@ export const dismissibleProps: IModal = {
     "There is only one Action to take.  You may Close or click the Overlay to eject, but you must choose `Ok` to proceed.",
   actions: ["Ok"],
 };
+export const multipleActionsProps: IModal = {
+  title: "You Have Several Options",
+  children:
+    "You have several options. Which will you choose?  You may Close or click the Overlay to eject, but you must choose `Ok` to proceed.",
+  cancelText: "Cancel",
+  actions: ["I'm Not Sure", "Maybe This One", "No, This One!"],
+};
+export const stringContentProps: IModal = {
+  title: "String Content Modal",
+  children: "This content is just a string",
+  actions: ["Ok"],
+};
+export const jsxContentProps: IModal = {
+  title: "JSX Content Modal",
+  children: (
+    <>
+      <p>This is a JSX paragraph</p>
+      <p>This is another JSX paragraph</p>
+      <p>
+        The elements are formatted accordingly, with proper vertical spacing
+      </p>
+    </>
+  ),
+  actions: ["Ok"],
+};
 export const initializeOpenProps: IModal = {
   title: "Initialize Open",
   children:

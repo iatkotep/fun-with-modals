@@ -40,6 +40,31 @@ export const DismissibleWithCancel: Story = {
     modalProps: m.dismissibleWithCancelProps,
   },
 };
+export const MultipleActions: Story = {
+  args: {
+    storyTitle: "Multiple Actions Modal",
+    storyDescription: <p>Modal supports several actions to choose from.</p>,
+    storyButtonText: "Launch Modal",
+    modalProps: m.multipleActionsProps,
+  },
+};
+
+export const StringContent: Story = {
+  args: {
+    storyTitle: "Modal with String Content",
+    storyDescription: <p>A modal may accept a string as its content.</p>,
+    storyButtonText: "Launch Modal",
+    modalProps: m.stringContentProps,
+  },
+};
+export const JSXContent: Story = {
+  args: {
+    storyTitle: "Modal with String Content",
+    storyDescription: <p>A modal may accept JSX as its content.</p>,
+    storyButtonText: "Launch Modal",
+    modalProps: m.jsxContentProps,
+  },
+};
 
 export const Blocking: Story = {
   args: {
