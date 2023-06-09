@@ -1,8 +1,6 @@
 # Modal Component
 Modal relies upon a custom Hook to allocate state, and generate the component
 
-`v0.0.1`
-
 ## useModal
 Custom hook that optionally accepts an initial Open state.  Allocates Visibility and Action state.  Generates and returns a Modal component, a Modal opener, and the Action state.
 
