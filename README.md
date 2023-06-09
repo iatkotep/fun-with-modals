@@ -8,7 +8,7 @@ Custom hook that optionally accepts an initial Open state.  Allocates Visibility
 useModal( isOpenInit?: boolean ) => {
   Modal: React.FC,
   openModal: () => void,
-  selectedActionId
+  selectedActionId: number | null
 }
 ```
 #### Parameters
